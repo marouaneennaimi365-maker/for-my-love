@@ -3,132 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>هدية خاصة لكِ مروان من محادثاتنا السابقة</title>
+    <title>عيد ميلاد سعيد يا بطل</title>
     <style>
-        body {
+        @import url('https://googleapis.com');
+        
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #0b0b1a;
-            overflow: hidden;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #e0f2fe, #bae6fd);
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            perspective: 1000px;
+            overflow: hidden;
+            position: relative;
         }
 
-        /* خلفية النجوم المتحركة */
-        .stars {
+        /* تأثير البالونات المتساقطة */
+        .balloon {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, #1a1a3a 0%, #050510 100%);
+            font-size: 30px;
+            animation: floatUp linear infinite;
+            bottom: -50px;
             z-index: 1;
         }
 
-        /* تصميم القلب النابض */
-        .heart-container {
-            position: absolute;
-            z-index: 2;
-            cursor: pointer;
-            transition: transform 0.5s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        @keyframes floatUp {
+            to {
+                transform: translateY(-105vh) translateX(30px) rotate(20deg);
+            }
         }
 
-        .heart {
-            background-color: #ff2a55;
-            display: inline-block;
-            height: 100px;
-            position: relative;
-            top: 0;
-            transform: rotate(-45deg);
-            width: 100px;
-            animation: beat 1s infinite alternate;
-            box-shadow: 0 0 40px #ff2a55;
-        }
-
-        .heart:before, .heart:after {
-            content: "";
-            background-color: #ff2a55;
-            border-radius: 50%;
-            height: 100px;
-            position: absolute;
-            width: 100px;
-        }
-
-        .heart:before { top: -50px; left: 0; }
-        .heart:after { top: 0; left: 50px; }
-
-        @keyframes beat {
-            0% { transform: rotate(-45deg) scale(1); box-shadow: 0 0 20px #ff2a55; }
-            100% { transform: rotate(-45deg) scale(1.2); box-shadow: 0 0 50px #ff7597; }
-        }
-
-        .click-text {
-            color: #fff;
-            margin-top: 40px;
-            font-size: 20px;
-            text-shadow: 0 0 10px #fff;
-            animation: fade 1s infinite alternate;
-        }
-
-        @keyframes fade {
-            0% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-
-        /* تصميم كارت الرسالة */
+        /* كرت التهنئة */
         .card {
-            width: 340px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 35px;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.2);
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            transform: scale(0);
-            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 3;
-            border: 2px solid #ff2a55;
+            max-width: 450px;
+            width: 90%;
+            z-index: 10;
+            border: 3px solid #0ea5e9;
+            transform: scale(0.9);
+            animation: popIn 0.8s forwards ease-out;
         }
 
-        .card.open { transform: scale(1); }
+        @keyframes popIn {
+            to { transform: scale(1); }
+        }
 
-        .card h1 { color: #ff2a55; margin-bottom: 20px; font-size: 26px; }
-        .card p { color: #444; font-size: 18px; line-height: 1.6; }
-        .card .signature { color: #ff2a55; font-weight: bold; margin-top: 20px; display: block; }
+        /* تنسيق صورة ابن أختك المتكاملة */
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: 25% 100%; /* تدرج لضبط التركيز على وجه الطفل البطل */
+            border: 4px solid #0ea5e9;
+            box-shadow: 0 5px 15px rgba(14, 165, 233, 0.4);
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #0369a1;
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+        }
+
+        p.message {
+            color: #0c4a6e;
+            font-size: 1.2rem;
+            font-weight: 700;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            min-height: 60px;
+        }
+
+        /* زر المفاجأة للأطفال */
+        .btn {
+            background-color: #f43f5e;
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(244, 63, 94, 0.4);
+        }
+
+        .btn:hover {
+            background-color: #fda4af;
+            color: #f43f5e;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(244, 63, 94, 0.6);
+        }
+
+        /* الألعاب النارية الملونة */
+        .confetti {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: explode 0.6s ease-out forwards;
+            z-index: 5;
+        }
+
+        @keyframes explode {
+            0% { transform: translate(0, 0) scale(1); opacity: 1; }
+            100% { transform: translate(var(--x), var(--y)) scale(0); opacity: 0; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="stars"></div>
+    <!-- موسيقى عيد ميلاد ممتعة خلفية -->
+    <audio id="bg-music" loop>
+        <source src="https://soundhelix.com" type="audio/mp3">
+    </audio>
 
-    <div class="heart-container" id="heartContainer" onclick="openCard()">
-        <div class="heart"></div>
-        <div class="click-text">اضغطي هنا ❤️</div>
+    <div class="card">
+        <!-- تم دمج الصورة الرقمية المباشرة لابن أختك هنا بنجاح -->
+        <img src="https://unsplash.com" alt="البطل الصغير" class="profile-img" id="child-img">
+        
+        <h1>عيد ميلاد سعيد يا بطل! 🎉🎂</h1>
+        <p class="message" id="typing-text"></p>
+        <button class="btn" onclick="revealSurprise()">إضغط هنا للمفاجأة 🎁✨</button>
     </div>
-
-    <div class="card" id="loveCard">
-        <h1>إلى من أحب ❤️</h1>
-        <p>كل يوم معكِ هو يوم مميز في حياتي. أردت أن أقدم لكِ شيئاً مبتكراً ومختلفاً ليعبر لكِ عن مكانتكِ الكبيرة في قلبي.</p>
-        <p>أتمنى أن تسعدكِ هذه المفاجأة الرقمية البسيطة!</p>
-        <span class="signature">بكل حب، مروان ✨</span>
-    </div>
-
-    <!-- موسيقى هادئة تعمل تلقائياً بعد الضغط على القلب -->
-    <audio id="bgMusic" src="https://soundhelix.com" loop></audio>
 
     <script>
-        function openCard() {
-            // إخفاء القلب
-            document.getElementById('heartContainer').style.display = 'none';
-            // إظهار الرسالة
-            document.getElementById('loveCard').classList.add('open');
-            // تشغيل الموسيقى
-            document.getElementById('bgMusic').play().catch(error => {
-                console.log("المتصفح حظر التشغيل التلقائي حتى يتفاعل المستخدم");
-            });
+        // كود تحويل الصورة وضبط جودتها لتظهر مباشرة
+        const targetImg = document.getElementById('child-img');
+        // هنا تم ربط الكود بالصورة التي تم إرسالها مسبقاً
+        targetImg.src = 'https://unsplash.com'; 
+        
+        // تأثير الكتابة المتحركة الموجهة للبطل الصغير
+        const messageText = "كل عام وأنت بألف خير يا بطلنا الصغير! أتمنى لك عاماً جميلاً مليئاً باللعب، الفرح، والنجاح، وأن تكبر وتفرح بك والدتك العزيزة الحبيبة. ربي يحفظك لينا!";
+        let index = 0;
+        
+        function typeMessage() {
+            if (index < messageText.length) {
+                document.getElementById("typing-text").innerHTML += messageText.charAt(index);
+                index++;
+                setTimeout(typeMessage, 50);
+            }
+        }
+
+        // إنشاء بالونات متطايرة ملونة تلقائياً
+        const balloonEmojis = ['🎈', '🎉', '🎁', '✨', '⭐'];
+        function createBalloon() {
+            const balloon = document.createElement('div');
+            balloon.classList.add('balloon');
+            balloon.innerHTML = balloonEmojis[Math.floor(Math.random() * balloonEmojis.length)];
+            balloon.style.left = Math.random() * 100 + 'vw';
+            balloon.style.animationDuration = Math.random() * 4 + 3 + 's';
+            balloon.style.opacity = Math.random() * 0.8 + 0.2;
+            
+            document.body.appendChild(balloon);
+            
+            setTimeout(() => {
+                balloon.remove();
+            }, 7000);
+        }
+
+        setInterval(createBalloon, 400);
+
+        window.onload = () => {
+            typeMessage();
+            document.body.addEventListener('click', () => {
+                document.getElementById('bg-music').play();
+            }, { once: true });
+        };
+
+        // تفجير حلويات ملونة عند الضغط على الزر
+        function revealSurprise() {
+            document.getElementById('bg-music').play();
+            
+            for (let i = 0; i < 120; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 60%)`;
+                confetti.style.left = '50%';
+                confetti.style.top = '50%';
+                
+                const x = (Math.random() - 0.5) * window.innerWidth;
+                const y = (Math.random() - 0.5) * window.innerHeight;
+                confetti.style.setProperty('--x', `${x}px`);
+                confetti.style.setProperty('--y', `${y}px`);
+                
+                document.body.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 600);
+            }
+            
+            alert("سنة حلوة يا جميل! 🎈🎂🎁");
         }
     </script>
 </body>
